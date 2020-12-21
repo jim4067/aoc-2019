@@ -19,11 +19,21 @@ let fuel_sum = (arr) => {
     let counter = 0;
 
     for (let index = 0; index < arr_len; index++) {
-        counter += fuel(arr[index]);
+        let adder = arr[index];
+        let temp = 0;
+
+        while (adder > 0) {
+            temp = fuel(adder);
+            //prevent it from going below zero
+            if (temp < 0) {
+                break;
+            }
+            counter += temp;
+            adder = temp;
+        }
     }
 
     return counter;
-
 }
 
 function fuel(mass) {
